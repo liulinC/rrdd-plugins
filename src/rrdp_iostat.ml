@@ -136,6 +136,7 @@ module Iostat = struct
 		(* Make a list of the names of the devices we are interested in *)
 		let dev_str = String.concat " " (List.map (fun dev -> Printf.sprintf "-d %s" dev) devs) in
 		let cmdstring = Printf.sprintf "/usr/bin/iostat -x %s 1 2" dev_str in (* 2 iterations; 1 second between them *)
+                D.debug "Lin ==== cmdstring: %s" cmdstring;
 
 		(* Iterate through each line and populate dev_values_map *)
 		let _ = Utils.exec_cmd ~cmdstring ~f:process_line in
